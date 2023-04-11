@@ -1,0 +1,15 @@
+2) Crie um programa em Haskell que conte os dígitos de um determinado número usando recursão. O número (n) deve digitado pelo usuário.
+Caso base: se n=0 numDigito = 1
+recursão: numDigito(n/10)
+Dica: para saber a quantidade dígitos basta contar quantas vezes a divisão vai ser feita antes do resultado ser 0.
+
+main:: IO()
+digitos::Float->Float
+digitos n 
+  |n<10 && n>=0 = 1
+  |otherwise = 1 + digitos(n/10)
+  
+  main = do 
+putStrLn("Digite um número: ")
+n<-readLn
+putStrLn("Numero de digitos: "++show(digitos n))
