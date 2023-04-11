@@ -1,0 +1,13 @@
+1) Faça uma rotina recursiva para calcular a somatória de todos os número de 1 a N (N será lido do teclado).
+Caso base: n =1 soma =1
+Recursão:  n + soma(n-1)
+
+somatorio :: Integer->Integer
+somatorio a 
+    |a == 1 = 1
+    |otherwise = a + somatorio(a-1)
+    
+main = do
+    putStrLn("Digite o numero")
+    a<-readLn
+    putStrLn(" O somatorio é: "++show(somatorio a))
