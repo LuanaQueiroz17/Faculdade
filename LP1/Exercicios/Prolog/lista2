@@ -1,0 +1,66 @@
+1. Representação de Conhecimento – Autores de Livros. Escreva fatos e/ou regras em Prolog que
+representem o seguinte conhecimento: Os Maias, livro, Eça de Queiroz, português, inglês, romance,
+escreveu, autor, nacionalidade, tipo, ficção
+Escreva as seguintes questões em Prolog:
+
+a) Quem escreveu “Os Maias”?
+
+
+b) Que autores portugueses escrevem romances?
+
+
+c) Quais os autores de livros de ficção que escreveram livros de outro tipo também?
+
+
+2. Representação de Conhecimento – Comidas e Bebidas. Escreva fatos e/ou regras em Prolog que
+representem o seguinte conhecimento: peru, frango, salmão, solha, cerveja, vinho verde, vinho
+maduro, Ana, Antonio, Barbara, Bruno, gosta, casado, combina.
+Escreva as seguintes questões em Prolog:
+
+a) Ana e Bruno são casados e gostam de vinho verde?
+
+
+b) Que bebida combina com salmão?
+
+
+c) Que comidas combinam com vinho verde?
+
+
+3. Representação de Conhecimento – Desportos e Jogos. Escreva fatos e/ou regras em Prolog que
+representem o seguinte conhecimento: João, Maria, Ana, casa, cão, xadrez, damas, ténis, natação,
+apartamento, gato, tigre, homem, mulher, animal, mora_em, gosta_de, jogo, desporto.
+Escreva as seguintes questões em Prolog:
+
+a) Quem mora num apartamento e gosta de animais?
+
+
+b) Será que o João e a Maria moram numa casa e gostam de desportos?
+
+
+c) Quem gosta de jogos e de desportos?
+
+
+d) Existe alguma mulher que gosta de ténis e gosta de tigres?
+
+
+4. Representação de Conhecimento – Tweety e Silverster. Traduza as seguintes frases para Prolog:
+“Tweety é um pássaro. Goldie é um peixe. Molie é uma minhoca. Pássaros gostam de minhocas.
+Gatos gostam de peixes. Gatos gostam de pássaros. Amigos gostam uns dos outros. O meu gato é
+meu amigo. O meu gato come tudo o que gosta. O meu gato chama-se Silvester.”
+
+a) Use Prolog para determinar tudo o que come o Silvester?
+
+
+b) A resposta é razoável ? Se não for, verifique se o problema está na especificação original ou na
+sua tradução para Prolog, corrija e execute novamente.
+
+
+5. Representação de Conhecimento – Programação e Erros Um estudante acostumado a usar
+linguagens procedimentais está desenvolvendo um compilador em Prolog. Uma das tarefas consiste
+em traduzir um código de erro para uma pseudo-descrição em português.
+
+O código por ele usado é:
+traduza(Codigo, Significado) :- Codigo = 1, Significado = integer_overflow.
+traduza(Codigo, Significado) :- Codigo = 2, Significado = divisao_por_zero.
+traduza(Codigo, Significado) :- Codigo = 3, Significado = id_desconhecido.
+Com sabe, esta não é uma forma apropriada de programar em Prolog. Melhore este código.
