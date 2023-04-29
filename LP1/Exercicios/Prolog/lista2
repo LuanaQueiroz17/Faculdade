@@ -3,53 +3,162 @@ representem o seguinte conhecimento: Os Maias, livro, Eça de Queiroz, portuguê
 escreveu, autor, nacionalidade, tipo, ficção
 Escreva as seguintes questões em Prolog:
 
+livro(os_maias).
+livro(livro_do_desassossego).
+livro(sobre_a_escrita).
+livro(salem).
+
+autor(eca_de_queiroz).
+autor(fernando_pessoa).
+autor(stephen_king).
+
+nacionalidade(eca_de_queiroz, portugues).
+nacionalidade(fernando_pessoa, portugues).
+nacionalidade(stephen_king, estadunidense).
+
+tipo(os_maias, romance).
+tipo(livro_do_desassossego, romance).
+tipo(sobre_a_escrita, memorias).
+tipo(salem, ficcao).
+
+escreveu(eca_de_queiroz, os_maias).
+escreveu(fernando_pessoa, livro_do_desassossego).
+escreveu(stephen_king, sobre_a_escrita).
+escreveu( stephen_king, salem).
+
 a) Quem escreveu “Os Maias”?
 
+escreveu(X, os_maias).
+X = eca_de_queiroz
 
 b) Que autores portugueses escrevem romances?
 
+nacionalidade(X, portugues), tipo(Y, romance), escreveu(X, Y)
+X = eca_de_queiroz,
+Y = os_maias
+X = fernando_pessoa,
+Y = livro_do_desassossego
 
 c) Quais os autores de livros de ficção que escreveram livros de outro tipo também?
 
+escreveu(X, Y), tipo(Y, ficcao), escreveu(X, Z), tipo(Z, TipoZ), TipoZ \= ficcao.
+TipoZ = memorias,
+X = stephen_king,
+Y = salem,
+Z = sobre_a_escrita
 
 2. Representação de Conhecimento – Comidas e Bebidas. Escreva fatos e/ou regras em Prolog que
 representem o seguinte conhecimento: peru, frango, salmão, solha, cerveja, vinho verde, vinho
 maduro, Ana, Antonio, Barbara, Bruno, gosta, casado, combina.
 Escreva as seguintes questões em Prolog:
 
+casados(bruno, ana).
+casados(antonio,barbara).
+
+gosta(bruno, vinho_verde).
+gosta(antonio, vinho_verde).
+gosta(ana, vinho_maduro).
+gosta(barbara, vinho_maduro).
+
+combina(vinho_verde, salmao).
+combina(vinho_verde, peru).
+combina(vinho_maduro, frango).
+combina(cerveja, peru).
+
 a) Ana e Bruno são casados e gostam de vinho verde?
 
+casados(bruno, ana), gosta(bruno, vinho_verde), gosta(ana, vinho_verde)
+false
 
 b) Que bebida combina com salmão?
 
+combina(X, salmao)
+X = vinho_verde
 
 c) Que comidas combinam com vinho verde?
 
+combina(vinho_verde, X)
+X = salmao
+X = peru
 
 3. Representação de Conhecimento – Desportos e Jogos. Escreva fatos e/ou regras em Prolog que
 representem o seguinte conhecimento: João, Maria, Ana, casa, cão, xadrez, damas, ténis, natação,
 apartamento, gato, tigre, homem, mulher, animal, mora_em, gosta_de, jogo, desporto.
 Escreva as seguintes questões em Prolog:
 
+livro(os_maias).
+livro(livro_do_desassossego).
+livro(sobre_a_escrita).
+livro(salem).
+
+autor(eca_de_queiroz).
+autor(fernando_pessoa).
+autor(stephen_king).
+
+nacionalidade(eca_de_queiroz, portugues).
+nacionalidade(fernando_pessoa, portugues).
+nacionalidade(stephen_king, estadunidense).
+
+tipo(os_maias, romance).
+tipo(livro_do_desassossego, romance).
+tipo(sobre_a_escrita, memorias).
+tipo(salem, ficcao).
+
+escreveu(eca_de_queiroz, os_maias).
+escreveu(fernando_pessoa, livro_do_desassossego).
+escreveu(stephen_king, sobre_a_escrita).
+escreveu( stephen_king, salem).
+
 a) Quem mora num apartamento e gosta de animais?
 
+mora(X, apartamento), gosta(X, Y), animal(Y)
+X = ana,
+Y = gato
 
 b) Será que o João e a Maria moram numa casa e gostam de desportos?
 
+mora(maria, casa), mora(joao, casa), gosta(maria, Y), gosta(joao, Z), desporto(Y), desporto(Z)
+true
+Y = natacao,
+X= tenis
 
 c) Quem gosta de jogos e de desportos?
 
+gosta(X, Y), gosta(X, Z), desporto(Y), jogo(Z)
+X = maria,
+Y = natacao,
+Z = xadrez
 
 d) Existe alguma mulher que gosta de ténis e gosta de tigres?
 
+gosta(X, tenis), gosta(X, tigre), mulher(X)
+false
 
 4. Representação de Conhecimento – Tweety e Silverster. Traduza as seguintes frases para Prolog:
 “Tweety é um pássaro. Goldie é um peixe. Molie é uma minhoca. Pássaros gostam de minhocas.
 Gatos gostam de peixes. Gatos gostam de pássaros. Amigos gostam uns dos outros. O meu gato é
 meu amigo. O meu gato come tudo o que gosta. O meu gato chama-se Silvester.”
 
+silvester(gato).
+twetty(passaro).
+goldie(peixe).
+molei(minhoca).
+
+gosta(passaro,minhoca).
+gosta(gato,peixe).
+gosta(gato,passaro).
+gosta(silvester,peixe).
+
+coma(silvester,peixe).
+pertence(silvester,henrique).
+
+amigo(X,Y):- gato(X), pertence(X,Y).
+
 a) Use Prolog para determinar tudo o que come o Silvester?
 
+gosta(X,silvester).
+false
+coma(silvesster,X).
 
 b) A resposta é razoável ? Se não for, verifique se o problema está na especificação original ou na
 sua tradução para Prolog, corrija e execute novamente.
