@@ -135,41 +135,188 @@ gosta(X, tenis), gosta(X, tigre), mulher(X)
 false
 
 4. Representação de Conhecimento – Tweety e Silverster. Traduza as seguintes frases para Prolog:
-“Tweety é um pássaro. Goldie é um peixe. Molie é uma minhoca. Pássaros gostam de minhocas.
-Gatos gostam de peixes. Gatos gostam de pássaros. Amigos gostam uns dos outros. O meu gato é
-meu amigo. O meu gato come tudo o que gosta. O meu gato chama-se Silvester.”
+“Tweety é um pássaro. Goldie é um peixe. Molie é uma minhoca. Pássaros gostam de minhocas. Gatos gostam de peixes. Gatos gostam de pássaros. Amigos gostam uns dos outros. O meu gato é meu amigo. O meu gato come tudo o que gosta. O meu gato chama-se Silvester.”
 
-silvester(gato).
-twetty(passaro).
+tweety(passaro).
 goldie(peixe).
-molei(minhoca).
+molie(minhoca).
+silvester(gato).
 
-gosta(passaro,minhoca).
-gosta(gato,peixe).
-gosta(gato,passaro).
-gosta(silvester,peixe).
+gosta(passaro, minhoca).
+gosta(gato, peixe).
+gosta(gato, passaro).
 
-coma(silvester,peixe).
-pertence(silvester,henrique).
-
-amigo(X,Y):- gato(X), pertence(X,Y).
 
 a) Use Prolog para determinar tudo o que come o Silvester?
-
-gosta(X,silvester).
-false
-coma(silvesster,X).
-
-b) A resposta é razoável ? Se não for, verifique se o problema está na especificação original ou na
-sua tradução para Prolog, corrija e execute novamente.
+gosta(gato, X)
+X = peixe
+X = passaro
 
 
-5. Representação de Conhecimento – Programação e Erros Um estudante acostumado a usar
-linguagens procedimentais está desenvolvendo um compilador em Prolog. Uma das tarefas consiste
-em traduzir um código de erro para uma pseudo-descrição em português.
+b) A resposta é razoável? Se não for, verifique se o problema está na especificação original ou na sua tradução para Prolog, corrija e execute novamente.
+	Sim, é razoável. Como só tem Silvester de gato na base de dados, o gato da resposta da questão anterior é ele.
+
+5. Representação de Conhecimento – Programação e Erros Um estudante acostumado a usar linguagens procedimentais está desenvolvendo um compilador em Prolog. Uma das tarefas consiste em traduzir um código de erro para uma pseudo-descrição em português.
 
 O código por ele usado é:
 traduza(Codigo, Significado) :- Codigo = 1, Significado = integer_overflow.
 traduza(Codigo, Significado) :- Codigo = 2, Significado = divisao_por_zero.
 traduza(Codigo, Significado) :- Codigo = 3, Significado = id_desconhecido.
+
 Com sabe, esta não é uma forma apropriada de programar em Prolog. Melhore este código.
+
+significado(1,  integer_overflow).
+significado(2, divisao_por_zero).
+significado(3, id_desconhecido).
+
+significado(1, X)
+X = integer_overflow
+significado(2, X)
+X = divisao_por_zero
+significado(3, X)
+X = id_desconhecido
+
+6. Representação de Conhecimento – Cargos e Chefes. Suponha a seguinte base de fatos Prolog:
+
+cargo(tecnico, rogerio).
+cargo(tecnico, ivone).
+cargo(engenheiro, daniel).
+cargo(engenheiro, isabel).
+cargo(engenheiro, oscar).
+cargo(engenheiro, tomas).
+cargo(engenheiro, ana).
+cargo(supervisor, luis).
+cargo(supervisor_chefe, sonia).
+cargo(secretaria_exec, laura).
+cargo(diretor, santiago).
+chefiado_por(tecnico, engenheiro).
+chefiado_por(engenheiro, supervisor).
+chefiado_por(analista, supervisor).
+chefiado_por(supervisor, supervisor_chefe).
+chefiado_por(supervisor_chefe, director).
+chefiado_por(secretaria_exec, director).
+
+Onde os predicados cargo/2 e chefiado_por/2 são autoexplicativos. Faça as consultas em Prolog:
+
+a) ?- chefiado_por(tecnico, X), chefeido_por(X,Y).
+	X = engenheiro,
+Y = supervisor
+
+b) ?- chefiado_por(tecnico, X), cargo(X,ivone), cargo(Y,Z).
+	
+	false
+
+c) ?- cargo(supervisor, X); cargo(supervisor, X).
+	
+	X = luis
+
+d) ?- cargo(J,P), (chefiado_por(J, supervisor_chefe); chefiado_por(J, supervisor)).
+
+	J = engenheiro,
+P = daniel
+J = engenheiro,
+P = isabel
+J = engenheiro,
+P = oscar
+J = engenheiro,
+P = tomas
+J = engenheiro,
+P = ana
+J = supervisor,
+P = luis
+
+e) ?- chefiado_por(P, director), not(cargo(P, carolina)).
+
+	P = supervisor_chefe
+P = secretaria_exec
+
+
+7. Representação de Conhecimento – Alunos e Professores Considere a seguinte base de fatos
+exemplo:
+
+aluno(joao, paradigmas).
+aluno(maria, paradigmas).
+aluno(joel, lab2).
+aluno(joel, estruturas).
+frequenta(joao, feup).
+frequenta(maria, feup).
+frequenta(joel, ist).
+professor(carlos, paradigmas).
+professor(ana_paula, estruturas).
+professor(pedro, lab2). funcionario(pedro, ist).
+funcionario(ana_paula, feup).
+funcionario(carlos, feup).
+
+Escreva as seguintes regras em prolog:
+
+a) Quem são os alunos do professor X?
+
+	aluno(Y, paradigmas), professor(X, paradigmas)
+X = carlos,
+Y = joao
+Y = maria
+
+b) Quem são as pessoas da universidade X? (alunos ou docentes)
+
+
+frequenta(X, feup), frequenta(Y, ist), funcionario(Z, feup), funcionario(A, ist)
+A = pedro,
+X = joao,
+Y = joel,
+Z = ana_paula
+A = pedro,
+X = joao,
+Y = joel,
+Z = carlos
+A = pedro,
+X = maria,
+Y = joel,
+Z = ana_paula
+A = pedro,
+X = maria,
+Y = joel,
+Z = carlos
+
+
+c) Quem é colega de quem? Se aluno: é colega se for colega de disciplina ou colega de curso ou
+colega de universidade. Se professor: se for professor da mesma universidade.
+
+
+	
+		aluno(X, paradigmas), frequenta(Y, feup), funcionario(Z, feup)
+X = Y, Y = joao,
+Z = ana_paula
+X = Y, Y = joao,
+Z = carlos
+X = joao,
+Y = maria,
+Z = ana_paula
+X = joao,
+Y = maria,
+Z = carlos
+X = maria,
+Y = joao,
+Z = ana_paula
+X = maria,
+Y = joao,
+Z = carlos
+X = Y, Y = maria,
+Z = ana_paula
+X = Y, Y = maria,
+Z = carlos
+
+
+
+
+8. Escreva uma base de conhecimento que represente a cadeia alimentar no reino animal (fatos e regras.)
+
+	come(girafa, folhas).
+come(zebra, grama).
+come(leao, zebra).
+come(leao, antilope).
+come(hiena, antilope).
+
+
+come(X, Y):- come(Z, Y), come(X, Z).
+
+
