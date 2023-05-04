@@ -1,0 +1,16 @@
+main::IO()
+
+pot::Int->Int->Int
+pot a b 
+  |a == 0 = 0
+  |b == 0 = 1
+  |otherwise = a * pot a(b-1)
+
+main = do 
+
+putStrLn "Digite o valor da base:"
+a<-readLn 
+putStrLn "Digite o valor do expoente:"
+b<-readLn 
+
+putStrLn("Potenciação: " ++show(pot a b))
