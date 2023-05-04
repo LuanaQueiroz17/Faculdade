@@ -1,0 +1,20 @@
+--3) Crie um programa que calcula o máximo divisor comum entre dois números usando a recursão. Obs.: Dois números naturais sempre têm divisores comuns. Assim, o máximo divisor comum entre os dois é o maior de seus divisores.
+--Exemplo: os divisores comuns de 12 e 18 são 1,2,3 e 6. Dentre eles, 6 é o maior. Então, chamamos o 6 de máximo divisor comum de 12 e 18 e indicamos m.d.c.(12,18) = 6.
+main::IO()
+
+mdc::Integer->Integer->Integer
+mdc n1 n2 
+ |n1 == 0 = n2
+ |n2 == 0 = n1
+ |otherwise = mdc n2 (mod n1 n2)
+ 
+--O algoritmo consiste em repetir a divisão sucessiva do maior número pelo menor número até que o menor número seja igual a zero. O último divisor não nulo é o máximo divisor comum. A implementação da função em Haskell segue esse algoritmo.--
+
+main = do
+
+putStrLn "Digite um número:"
+n1<-readLn 
+putStrLn "Digite outro número:"
+n2<-readLn 
+
+putStrLn("MDC = "++show(mdc n1 n2))
