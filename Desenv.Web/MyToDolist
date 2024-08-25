@@ -3,29 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tarefas</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #31389bb4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        #todo-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        #todo-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #task-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+        #add-task-btn {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #tasks, #completed-tasks {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #tasks li, #completed-tasks li {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #tasks li .complete-btn {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        #tasks li .remove-btn, #completed-tasks li .remove-btn {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #completed-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        #completed-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Minha Lista de Tarefas</h1>
-        <div class="input-container">
-            <form id="formTarefa">
-                <input type="text" id="entradaTarefa" placeholder="Adicione uma nova tarefa...">
-                <button type="submit" id="botaoAdicionar">Adicionar</button>
-            </form>
-        </div>
-        <div class="secoes-tarefas">
-            <div class="tarefas-pendentes">
-                <h2>Tarefas Pendentes</h2>
-                <ul id="listaTarefas"></ul>
-            </div>
-            <div class="tarefas-concluidas">
-                <h2>Tarefas Concluídas</h2>
-                <ul id="listaConcluidas"></ul>
-            </div>
-        </div>
+    <div id="todo-container">
+        <h2>To-Do List</h2>
+        <input type="text" id="task-input" placeholder="Nova tarefa...">
+        <button id="add-task-btn">Adicionar Tarefa</button>
+        <ul id="tasks"></ul>
     </div>
-    <script src="script.js"></script>
+
+    <div id="completed-container">
+        <h2>Tarefas Concluídas</h2>
+        <ul id="completed-tasks"></ul>
+    </div>
+
+    <script>
+        document.getElementById('add-task-btn').addEventListener('click', function() {
+            var taskInput = document.getElementById('task-input');
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                var li = document.createElement('li');
+                li.textContent = taskText;
+
+                var completeBtn = document.createElement('button');
+                completeBtn.textContent = 'Concluir';
+                completeBtn.classList.add('complete-btn');
+                completeBtn.addEventListener('click', function() {
+                    li.remove();
+                    li.classList.remove('completed');
+                    document.getElementById('completed-tasks').appendChild(li);
+                    completeBtn.remove();
+                });
+
+                var removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remover';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.addEventListener('click', function() {
+                    li.remove();
+                });
+
+                li.insertBefore(completeBtn, li.firstChild);
+                li.appendChild(removeBtn);
+                document.getElementById('tasks').appendChild(li);
+                taskInput.value = '';
+            }
+        });
+    </script>
 </body>
 </html>
