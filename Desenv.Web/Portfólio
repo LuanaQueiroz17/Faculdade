@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #087083;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #010305;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .project {
+            flex: 1;
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meu Portfólio</h1>
+    </header>
+
+    <section class="container">
+        <h2>Sobre Mim</h2>
+        <p>Meu nome é <strong>Luana Queiroz dos Santos</strong>, sou estudante do curso de Sistema de Informação no Instituto Federal Baiano e tenho 22 anos de idade. Como uma mulher apaixonada por tecnologia e criatividade, eu encontro inspiração tanto na escrita de livros quanto na composição de músicas, e como disse Rafael Lain "Programadores e artistas são os únicos profissionais que tem como hobby a própria profissão.” 
+    <section class="container">
+        <h2>Habilidades</h2>
+        <ul>
+            <li>Conhecimento de design responsivo e melhores práticas de UX/UI.</li>
+            <li>Experiência com ferramentas de gerenciamento de projetos como Notion, Trello ou Asana.</li>
+            <li>Habilidade para identificar, analisar e resolver problemas de maneira eficaz e criativa.</li>
+            
+        </ul>
+    </section>
+
+    <section class="container">
+        <h2>Projetos</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>Portfólio</h3>
+                <p>Um portfólio em HTML é uma página ou conjunto de páginas web criadas para exibir e destacar o trabalho, habilidades e experiências de uma pessoa ou empresa. Geralmente, inclui seções como uma breve biografia, uma lista de habilidades, projetos anteriores e informações de contato.</p>
+            </div>
+            <div class="project">
+                <h3>To Do List</h3>
+                <p>Código To Do List HTML:<strong>https://github.com/LuanaQueiroz17/Faculdade/tree/main/Desenv.Web/Meu%20To%20Do%20List.</strong> </p>
+            </div>
+            <div class="project">
+                <h3>Colocar To Do List em next</h3>
+                <p>Colocar em next o projeto anterior.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Contato</h2>
+        <p>Você pode entrar em contato comigo através do e-mail: <a href="estudosluana17@gmail.com">estudosluana17@gmail.com</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Meu Portfólio. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
